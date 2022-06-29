@@ -1,0 +1,46 @@
+{
+  "name": "calendar",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "dev": "parcel public/index.html",
+    "format": "prettier \"client/**/* .{js,html}\" --write"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Stevemb2/Calendar.git"
+  },
+  "keywords": [],
+  "author": "Steven Burns",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Stevemb2/Calendar/issues"
+  },
+  "homepage": "https://github.com/Stevemb2/Calendar#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "express": "^4.18.1",
+    "http": "^0.0.1-security",
+    "mongoose": "^6.4.1",
+    "os": "^0.1.2",
+    "parcel-bundler": "^1.12.5",
+    "path": "^0.12.7",
+    "prettier": "^2.7.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "url": "^0.11.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.6",
+    "@babel/preset-env": "^7.18.6",
+    "@babel/preset-react": "^7.18.6",
+    "babel-loader": "^8.2.5",
+    "parcel-bundler": "^1.12.5",
+    "prettier": "^2.7.1"
+  }
+}

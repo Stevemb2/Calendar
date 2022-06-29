@@ -1,0 +1,25 @@
+
+#Installing MongoDB
+
+brew tap mongodb/brew
+brew install mongodb-community
+brew services start mongodb-community
+
+# Starting MongoDB
+
+brew services start mongodb-community
+
+# Drop a collection
+
+db.calendar.drop()
+
+# Find all users
+
+db.calendar.find({})
+
+# Inserting mongodb data
+
+db.calendar.drop()
+
+db.calendar.insert({"date":"6-12-2022","title":"Dentist Appointment","description":"Very painful tooth extraction"})
+db.calendar.insert({"date":"7-12-2022","title":"Doctors Appointment","description":"Routine checkup"})
