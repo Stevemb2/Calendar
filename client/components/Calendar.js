@@ -1,37 +1,31 @@
-import { useState, useEffect, StrictMode } from "react";
-import DateContext from "../Context/DateContext";
-import EventContext from "../Context/EventContext";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setDate } from "../actions/setDate";
 import { Header } from "./Header";
 import { Month } from "./Month";
 import { getTodaysDate } from "../utilities/getTodaysDate";
 import { getAllCalendarEvents } from "../services/getAllCalendarEvents";
 
 export const Calendar = () => {
-  const todaysDate = getTodaysDate();
-  const dateHook = useState(todaysDate);
-  const eventItemsHook = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(
     (async () => {
-      console.log("Getting all event items from database");
+      const todaysDate = getTodaysDate();
+      dispatch(setDate(todaysDate));
 
       const data = await getAllCalendarEvents();
+      console.log(`Calendar: event items: ${JSON.stringify(data, null, 3)}`);
 
-      setEventItems(data);
+      if (data && data.length > 0) dispatch(postEvents(data));
     })(),
     []
   );
 
   return (
-    <StrictMode>
-      <EventContext.Provider value={eventItemsHook}>
-        <DateContext.Provider value={dateHook}>
-          <div>
-            <Header />
-            <Month />
-          </div>
-        </DateContext.Provider>
-      </EventContext.Provider>
-    </StrictMode>
+    <div>
+      <Header />
+      <Month />
+    </div>
   );
 };

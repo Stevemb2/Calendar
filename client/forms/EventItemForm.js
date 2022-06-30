@@ -1,27 +1,16 @@
-import { useState, useReducer, useContext, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useFetch } from "../hooks/useFetch";
 import EventContext from "../Context/EventContext";
 import { formatDate } from "../utilities/formatDate";
 
 export const EventItemForm = ({ eventItem, isDisplayed, setIsDisplayed }) => {
-  const [eventItems, setEventItems] = useContext(EventContext);
+  const eventItems = useSelector((state) => state.eventItems);
+  const dispatch = useDispatch();
 
   const [title, setTitle] = useState(eventItem.title);
   const [description, setDescription] = useState(eventItem.description);
   const [newEventItems, setNewEventItems] = useState([]);
-
-  const reducer = (state, action) => {
-    switch (action.type) {
-      case "PUT":
-        return { ...state, ...action.payload };
-      case "DELETE":
-        return { ...state, ...action.payload };
-      default:
-        return state;
-    }
-  };
-
-  const [updatedEventItem, dispatch] = useReducer(reducer, eventItem);
 
   // useEffect(() => {
   //     setEventItems(newEventItems);

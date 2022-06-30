@@ -1,25 +1,29 @@
 import axios from "axios";
 
-export const deleteCalendarEvent = () => {
-    const options = {
-        method: "delete",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        url: "event",
-      };
+export const deleteCalendarEvent = (date, title) => {
+  const options = {
+    method: "delete",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    url: "event",
+    data: {
+      date,
+      title,
+    }
+  };
+
+  try {
+    const response = await axios(options);
+
+    const { value, err } = response.data;
     
-      try {
-        const response = await axios(options);
-    
-        const { isError, message, event } = response.data;
-    
-        if (isError) {
-          throw message;
-        } else {
-          return event;
-        }
-      } catch (err) {
-        throw err;
-      }
+    if (err) {
+      return { err };
+    } else {
+      return { value }
+    }
+  } catch (err) {
+    throw { err };
+  }
 };

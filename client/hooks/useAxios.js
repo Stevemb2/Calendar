@@ -3,19 +3,25 @@ import axios from "axios";
 
 export const useAxios = (event, updatedEvent, method) => {
   useEffect(() => {
-    const fetchEvent = async () => {
-      const res = await fetch("/api/events", {
-        method,
-        body: JSON.stringify(updatedEvent),
+    const handleEvent = async () => {
+      const options = {
+        method: "post",
         headers: {
           "Content-Type": "application/json",
         },
-      });
+        url: "event",
+      };
 
-      const data = await res.json();
+      const response = await axios(options);
+
+      const { isError, message, event } = response.data;
 
       console.log(
-        `useFetch: method: ${method}, data: ${JSON.stringify(data, null, 3)}`
+        `useFetch: method: ${method}, data: ${JSON.stringify(
+          response.data,
+          null,
+          3
+        )}`
       );
     };
 
@@ -36,7 +42,7 @@ export const useAxios = (event, updatedEvent, method) => {
           event.title !== updatedEvent.title ||
           event.description !== updatedEvent.description
         ) {
-          fetchEvent();
+          handleEvent();
         }
       }
     }

@@ -1,25 +1,30 @@
 import axios from "axios";
 
-export const updateCalendarEvent = () => {
-    const options = {
-        method: "put",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        url: "event",
-      };
+export const updateCalendarEvent = (date, title, description) => {
+  const options = {
+    method: "put",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    url: "event",
+    data: {
+      date,
+      title,
+      description,
+    }
+  };
+
+  try {
+    const response = await axios(options);
+
+    const { value, err } = response.data;
     
-      try {
-        const response = await axios(options);
-    
-        const { isError, message, eventArray } = response.data;
-    
-        if (isError) {
-          throw message;
-        } else {
-          return eventArray;
-        }
-      } catch (err) {
-        throw err;
-      }
+    if (err) {
+      return { err };
+    } else {
+      return { value }
+    }
+  } catch (err) {
+    throw { err };
+  }
 };

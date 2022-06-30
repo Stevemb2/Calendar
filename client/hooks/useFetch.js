@@ -3,6 +3,7 @@ import { useEffect } from "react";
 export const useFetch = (event, updatedEvent, method) => {
   useEffect(() => {
     const fetchEvent = async () => {
+      7;
       const res = await fetch("/api/events", {
         method,
         body: JSON.stringify(updatedEvent),

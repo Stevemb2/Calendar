@@ -12,12 +12,12 @@ export const getAllCalendarEvents = async () => {
   try {
     const response = await axios(options);
 
-    const { isError, message, eventArray } = response.data;
+    const { isError, message, events } = response.data;
 
     if (isError) {
       throw message;
     } else {
-      return eventArray;
+      return events;
     }
   } catch (err) {
     throw err;
