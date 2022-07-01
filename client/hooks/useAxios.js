@@ -2,49 +2,39 @@ import { useEffect } from "react";
 import axios from "axios";
 
 export const useAxios = (event, updatedEvent, method) => {
-  useEffect(() => {
-    const handleEvent = async () => {
-      const options = {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        url: "event",
-      };
+  const log = (method, data) => {
+    console.log(`useAxios: ${method}, event: ${JSON.stringify(data, null, 3)}`);
+  };
 
-      const response = await axios(options);
+  useEffect(
+    (async () => {
+      if (event && updatedEvent) {
+        if (method === "POST" || method === "PUT" || method === "DELETE") {
+          log(method, event);
+          log(method, updatedEvent);
 
-      const { isError, message, event } = response.data;
+          if (
+            event.title !== updatedEvent.title ||
+            event.description !== updatedEvent.description
+          ) {
+            const options = {
+              method,
+              headers: {
+                "Content-Type": "application/json",
+              },
+              url: "event",
+              data: updatedEvent,
+            };
 
-      console.log(
-        `useFetch: method: ${method}, data: ${JSON.stringify(
-          response.data,
-          null,
-          3
-        )}`
-      );
-    };
+            const response = await axios(options);
 
-    if (event && updatedEvent) {
-      if (method === "POST" || method === "PUT" || method === "DELETE") {
-        console.log(
-          `fetch: method: ${method}, event: ${JSON.stringify(event, null, 3)}`
-        );
-        console.log(
-          `fetch: method: ${method}, updatedEvent: ${JSON.stringify(
-            updatedEvent,
-            null,
-            3
-          )}`
-        );
+            //const { value, err } = response.data;
 
-        if (
-          event.title !== updatedEvent.title ||
-          event.description !== updatedEvent.description
-        ) {
-          handleEvent();
+            log(method, response);
+          }
         }
       }
-    }
-  }, [updatedEvent.title, updatedEvent.description]);
+    })(),
+    [updatedEvent.title, updatedEvent.description]
+  );
 };

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useFetch } from "../hooks/useFetch";
+import { useAxios } from "../hooks/useAxios";
 import { formatDate } from "../utilities/formatDate";
 
 export const EventForm = ({ date, isDisplayed, setIsDisplayed }) => {
@@ -10,7 +10,7 @@ export const EventForm = ({ date, isDisplayed, setIsDisplayed }) => {
   const [title, setTitle] = useState(updatedEventItem.title);
   const [description, setDescription] = useState(updatedEventItem.description);
 
-  useFetch(initialEventItem, updatedEventItem, method);
+  useAxios(initialEventItem, updatedEventItem, method);
 
   const handleTitle = (event) => {
     setTitle(event.target.value);

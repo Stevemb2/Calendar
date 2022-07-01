@@ -1,7 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useFetch } from "../hooks/useFetch";
-import EventContext from "../Context/EventContext";
+import { useAxios } from "../hooks/useFetch";
 import { formatDate } from "../utilities/formatDate";
 
 export const EventItemForm = ({ eventItem, isDisplayed, setIsDisplayed }) => {
@@ -12,12 +11,8 @@ export const EventItemForm = ({ eventItem, isDisplayed, setIsDisplayed }) => {
   const [description, setDescription] = useState(eventItem.description);
   const [newEventItems, setNewEventItems] = useState([]);
 
-  // useEffect(() => {
-  //     setEventItems(newEventItems);
-  // }, [newEventItems]);
-
   // STEVE this is not working when we call setEventItems!
-  useFetch(eventItem, updatedEventItem);
+  useAxios(eventItem, updatedEventItem);
 
   const handleTitle = (event) => {
     setTitle(event.target.value);
