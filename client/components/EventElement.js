@@ -1,5 +1,7 @@
+import React from "react";
 import { useState } from "react";
 import { EventItemForm } from "../Forms/EventItemForm";
+import "../styles/calendar.css";
 
 export const EventElement = ({ eventItem, position }) => {
   const [isDisplayed, setIsDisplayed] = useState(false);

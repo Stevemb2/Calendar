@@ -1,24 +1,40 @@
-import bodyParser from "body-parser";
 import express from "express";
+import { fileURLToPath } from "url";
 import http from "http";
 import path from "path";
+import bodyParser from "body-parser";
 import os from "os";
-import { fileURLToPath } from "url";
-import { CalendarController } from "./controllers/CalendarController";
+import mongoose from "mongoose";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// Controllers
+import { getAllEventsController } from "./controllers/getAllEventsController.js";
+import { createEventController } from "./controllers/createEventController.js";
+import { updateEventController } from "./controllers/updateEventController.js";
+import { deleteEventController } from "./controllers/deleteEventController.js";
 
-const Configuration = {
+const app = express();
+
+const configuration = {
   port: 3000,
   mongoPort: 27017,
   hostname: "localhost",
   platform: os.platform(),
 };
 
-const app = express();
+// MongoDB
 
-app.set("port", Configuration.port);
+mongoose.connect(
+  `mongodb://${configuration.hostname}:${configuration.mongoPort}/calendar`,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
+
+app.set("port", configuration.port);
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 //app.use(express.static(path.join(__dirname, "..", "client")));
 app.use(express.static(path.join(__dirname, "..", "dist")));
@@ -30,19 +46,29 @@ app.use(
   })
 ); // to support URL-encoded bodies
 
-http.createServer(app).listen(Configuration.port, () => {
+// Routers
+
+const eventRouter = express.Router();
+
+app.use(eventRouter);
+
+http.createServer(app).listen(configuration.port, () => {
   console.log(
-    `Express started on http://${Configuration.hostname}:${Configuration.port} on ${Configuration.platform} platform; press Ctrl-C to terminate.`
+    `Express started on http://${configuration.hostname}:${configuration.port} on ${configuration.platform} platform; press Ctrl-C to terminate.`
   );
 });
 
-const calendarRouter = express.Router();
+const Schema = mongoose.Schema;
 
-app.use(calendarRouter);
+const calendarSchema = new Schema({
+  date: { type: String, required: true, unique: true },
+  title: { type: String, required: true },
+  description: { type: String },
+});
 
-const calendarController = CalendarController();
+const calendarModel = mongoose.model("calendar", calendarSchema);
 
-calendarRouter.get("/event", calendarController.getAllCalendarEvents());
-calendarRouter.post("/event", calendarController.createCalendarEvent());
-calendarRouter.put("/event", calendarController.putCalendarEvent());
-calendarRouter.delete("/event", calendarController.deleteCalendarEvent());
+getAllEventsController(eventRouter, calendarModel);
+createEventController(eventRouter, calendarModel);
+updateEventController(eventRouter, calendarModel);
+deleteEventController(eventRouter, calendarModel);

@@ -1,6 +1,8 @@
+import React from "react";
 import { useSelector } from "react-redux";
 import { Day } from "./Day";
 import { createDateArray } from "../utilities/createDateArray";
+import "../styles/calendar.css";
 
 export const Month = () => {
   const date = useSelector((state) => state.date);

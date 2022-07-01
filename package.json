@@ -1,7 +1,7 @@
 {
   "name": "calendar",
   "version": "1.0.0",
-  "description": "",
+  "description": "Calendar application for scheduling events",
   "type": "module",
   "main": "index.js",
   "directories": {
@@ -9,7 +9,8 @@
   },
   "scripts": {
     "dev": "parcel public/index.html",
-    "format": "prettier \"client/**/* .{js,html}\" --write"
+    "format": "prettier \"client/**/* .{js,html}\" --write",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -32,9 +33,8 @@
     "parcel-bundler": "^1.12.5",
     "path": "^0.12.7",
     "prettier": "^2.7.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "react-redux": "^8.0.2",
+    "react-uuid": "^1.0.2",
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.1",
     "url": "^0.11.0"
@@ -44,7 +44,12 @@
     "@babel/preset-env": "^7.18.6",
     "@babel/preset-react": "^7.18.6",
     "babel-loader": "^8.2.5",
+    "file-loader": "^6.2.0",
+    "html-loader": "^3.1.2",
     "parcel-bundler": "^1.12.5",
-    "prettier": "^2.7.1"
+    "prettier": "^2.7.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sass": "^1.53.0"
   }
 }

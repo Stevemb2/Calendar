@@ -1,4 +1,4 @@
-export default eventReducer = (state = [], action) => {
+export const eventReducer = (state = [], action) => {
   let events;
   let updatedEvent;
 

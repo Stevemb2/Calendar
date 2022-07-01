@@ -1,8 +1,10 @@
+import React from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { getDayOfWeekText } from "../utilities/getDayOfWeekText";
 import { EventForm } from "../Forms/EventForm";
 import { EventElement } from "./EventElement";
+import "../styles/calendar.css";
 
 export const Day = ({ date }) => {
   const eventItems = useSelector((state) => state.eventItems);

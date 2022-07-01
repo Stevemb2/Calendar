@@ -1,4 +1,9 @@
-node_modules
-dist
-.cache
+node_modules/
+dist/
+logs/
+.cache/
 .git
+.npm
+.env
+public/images
+.DS_Store

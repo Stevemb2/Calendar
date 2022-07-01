@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useAxios } from "../hooks/useFetch";
+import { useAxios } from "../hooks/useAxios";
 import { formatDate } from "../utilities/formatDate";
 
 export const EventItemForm = ({ eventItem, isDisplayed, setIsDisplayed }) => {

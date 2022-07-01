@@ -1,15 +1,22 @@
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setDate } from "../actions/setDate";
-import { getMonthText } from "../utilities/getMonthText";
-import { getTodaysDate } from "../utilities/getTodaysDate";
+import { setDateAction } from "../actions/setDateAction.js";
+import { getMonthText } from "../utilities/getMonthText.js";
+import { getTodaysDate } from "../utilities/getTodaysDate.js";
+import "../styles/calendar.css";
 
 export const Header = () => {
   const dispatch = useDispatch();
-  const date = useSelector((state) => state.date);
+  //const date = useSelector((state) => state.date);
+  const date = {
+    day: 3,
+    month: 6,
+    year: 2022,
+  };
 
   const setTodayHandler = () => {
     const todaysDate = getTodaysDate();
-    dispatch(setDate(todaysDate));
+    dispatch(setDateAction(todaysDate));
   };
 
   const previousMonthHandler = () => {
@@ -19,7 +26,7 @@ export const Header = () => {
     const newDate = new Date(year, month, 1);
 
     dispatch(
-      setDate({
+      setDateAction({
         day: newDate.getDate(),
         dayOfWeek: newDate.getDay(),
         month: newDate.getMonth(),
@@ -35,7 +42,7 @@ export const Header = () => {
     const newDate = new Date(year, month, 1);
 
     dispatch(
-      setDate({
+      setDateAction({
         day: newDate.getDate(),
         dayOfWeek: newDate.getDay(),
         month: newDate.getMonth(),

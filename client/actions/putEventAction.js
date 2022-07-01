@@ -1,6 +1,6 @@
-export default function putEvent(event) {
+export const putEventAction = (event) => {
   return {
     type: "PUT_EVENT",
     payload: event,
   };
-}
+};

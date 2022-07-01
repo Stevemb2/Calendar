@@ -1,6 +1,6 @@
-export default function getEvents(events) {
+export const getEventsAction = (events) => {
   return {
     type: "GET_EVENTS",
     payload: events,
   };
-}
+};
