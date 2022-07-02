@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useAxios } from "../hooks/useAxios";
 import { formatDate } from "../utilities/formatDate";
+import { postEventAction } from "../actions/postEventAction";
 
 export const EventForm = ({ date, isDisplayed, setIsDisplayed }) => {
   const eventItems = useSelector((state) => state.eventItems);
@@ -29,14 +30,13 @@ export const EventForm = ({ date, isDisplayed, setIsDisplayed }) => {
   };
 
   const handleCreate = () => {
-    dispatch({
-      type: "POST",
-      payload: {
+    dispatch(
+      postEventAction({
         date,
         title,
         description,
-      },
-    });
+      })
+    );
 
     setEventItems([
       ...eventItems,
