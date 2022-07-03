@@ -1,10 +1,11 @@
+import React from "react";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useAxios } from "../hooks/useAxios";
 import { formatDate } from "../utilities/formatDate";
 
 export const EventItemForm = ({ eventItem, isDisplayed, setIsDisplayed }) => {
-  const eventItems = useSelector((state) => state.eventItems);
+  const eventItems = useSelector((state) => state.events);
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState(eventItem.title);
@@ -12,7 +13,7 @@ export const EventItemForm = ({ eventItem, isDisplayed, setIsDisplayed }) => {
   const [newEventItems, setNewEventItems] = useState([]);
 
   // STEVE this is not working when we call setEventItems!
-  useAxios(eventItem, updatedEventItem);
+  //useAxios(eventItem, updatedEventItem);
 
   const handleTitle = (event) => {
     setTitle(event.target.value);
@@ -24,7 +25,7 @@ export const EventItemForm = ({ eventItem, isDisplayed, setIsDisplayed }) => {
 
   const handleUpdate = () => {
     dispatch({
-      type: "PUT",
+      type: "UPDATE_EVENT",
       payload: {
         date: eventItem.date,
         title,
@@ -46,7 +47,7 @@ export const EventItemForm = ({ eventItem, isDisplayed, setIsDisplayed }) => {
 
   const handleDelete = () => {
     dispatch({
-      type: "DELETE",
+      type: "DELETE_EVENT",
       payload: {
         date: eventItem.date,
         title: "",

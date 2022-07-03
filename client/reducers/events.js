@@ -1,16 +1,16 @@
-export const eventReducer = (state = [], action) => {
+export const events = (state = [], action) => {
   let events;
   let updatedEvent;
 
   switch (action.type) {
     case "GET_EVENTS":
       return state;
-    case "POST_EVENTS":
+    case "CREATE_EVENTS":
       if (!Array.isArray(action.payload)) return;
       return action.payload;
     case "DELETE_EVENTS":
       return [];
-    case "POST_EVENT":
+    case "CREATE_EVENT":
       events = state;
       updatedEvent = action.payload;
 
@@ -21,7 +21,7 @@ export const eventReducer = (state = [], action) => {
       });
 
       return [...events, updatedEvent];
-    case "PUT_EVENT":
+    case "UPDATE_EVENT":
       events = state;
       updatedEvent = action.payload;
 

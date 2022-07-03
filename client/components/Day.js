@@ -7,7 +7,7 @@ import { EventElement } from "./EventElement";
 import "../styles/calendar.css";
 
 export const Day = ({ date }) => {
-  const eventItems = useSelector((state) => state.eventItems);
+  const eventItems = useSelector((state) => state.events);
 
   const [isDisplayed, setIsDisplayed] = useState(false);
 

@@ -8,15 +8,9 @@ import "../styles/calendar.css";
 export const Header = () => {
   const dispatch = useDispatch();
 
-  //const date = useSelector((state) => state.date);
+  let date = useSelector((state) => state.date);
 
   //console.log(`steve: date: ${JSON.stringify(date, null, 3)}`);
-
-  const date = {
-    day: 3,
-    month: 6,
-    year: 2022,
-  };
 
   const setTodayHandler = () => {
     const todaysDate = getTodaysDate();

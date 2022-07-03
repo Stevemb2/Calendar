@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import axios from "axios";
 
 export const useAxios = (event, updatedEvent, method) => {
-  const log = (method, data) => {
-    console.log(`useAxios: ${method}, event: ${JSON.stringify(data, null, 3)}`);
-  };
+  // const log = (method, data) => {
+  //   console.log(`useAxios: ${method}, event: ${JSON.stringify(data, null, 3)}`);
+  // };
 
   useEffect(
     (async () => {

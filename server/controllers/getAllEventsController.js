@@ -5,7 +5,7 @@ export const getAllEventsController = (eventModel) => {
     try {
       const events = await eventModel.find({}).exec();
 
-      console.debug(`server: events: ${JSON.stringify(events, null, 3)}`);
+      //console.debug(`server: events: ${JSON.stringify(events, null, 3)}`);
 
       res.status(200).json({
         value: events,

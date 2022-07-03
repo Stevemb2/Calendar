@@ -1,17 +1,17 @@
-import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useAxios } from "../hooks/useAxios";
 import { formatDate } from "../utilities/formatDate";
-import { postEventAction } from "../actions/postEventAction";
+import { createEventAction } from "../actions/createEventAction";
 
 export const EventForm = ({ date, isDisplayed, setIsDisplayed }) => {
-  const eventItems = useSelector((state) => state.eventItems);
   const dispatch = useDispatch();
 
-  const [title, setTitle] = useState(updatedEventItem.title);
-  const [description, setDescription] = useState(updatedEventItem.description);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
-  useAxios(initialEventItem, updatedEventItem, method);
+  // useAxios(initialEventItem, updatedEventItem, method);
 
   const handleTitle = (event) => {
     setTitle(event.target.value);
@@ -31,17 +31,12 @@ export const EventForm = ({ date, isDisplayed, setIsDisplayed }) => {
 
   const handleCreate = () => {
     dispatch(
-      postEventAction({
+      createEventAction({
         date,
         title,
         description,
       })
     );
-
-    setEventItems([
-      ...eventItems,
-      { date, title, description, method: "POST" },
-    ]);
 
     setIsDisplayed(false);
   };
