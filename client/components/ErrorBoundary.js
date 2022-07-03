@@ -27,11 +27,8 @@ class ErrorBoundary extends Component {
         <div>
           <div>There was an error.</div>
           <div>
-            <Link to="/error">
-              <a>Click here</a>
-            </Link>{" "}
-            to go back to the homepage. Or wait five seconds and we will do it
-            for you.
+            <Link to="/error">Click here</Link> to go back to the homepage. Or
+            wait five seconds and we will do it for you.
           </div>
         </div>
       );

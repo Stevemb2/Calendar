@@ -60,15 +60,15 @@ http.createServer(app).listen(configuration.port, () => {
 
 const Schema = mongoose.Schema;
 
-const calendarSchema = new Schema({
+const eventSchema = new Schema({
   date: { type: String, required: true, unique: true },
   title: { type: String, required: true },
   description: { type: String },
 });
 
-const calendarModel = mongoose.model("calendar", calendarSchema);
+const eventModel = mongoose.model("event", eventSchema);
 
-getAllEventsController(eventRouter, calendarModel);
-createEventController(eventRouter, calendarModel);
-updateEventController(eventRouter, calendarModel);
-deleteEventController(eventRouter, calendarModel);
+eventRouter.get("/event", getAllEventsController(eventModel));
+eventRouter.post("/event", createEventController(eventModel));
+eventRouter.put("/event", updateEventController(eventModel));
+eventRouter.delete("/event", deleteEventController(eventModel));

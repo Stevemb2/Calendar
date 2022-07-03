@@ -1,5 +1,5 @@
-export const createEventController = (eventRouter, eventCollection) => {
-  eventRouter.get("/event", async (req, res) => {
+export const createEventController = (calendarModel) => {
+  return async (req, res) => {
     const date = req.body.date;
     const title = req.body.title;
     const description = req.body.description;
@@ -7,7 +7,7 @@ export const createEventController = (eventRouter, eventCollection) => {
     const event = { date, title, description };
 
     try {
-      const newEvent = eventCollection.save(event);
+      const newEvent = calendarModel.create(event);
 
       res.status(200).json({
         value: newEvent,
@@ -15,5 +15,5 @@ export const createEventController = (eventRouter, eventCollection) => {
     } catch (err) {
       res.status(500).json({ err });
     }
-  });
+  };
 };

@@ -11,15 +11,17 @@ brew services start mongodb-community
 
 # Drop a collection
 
-db.calendar.drop()
+db.events.drop()
 
 # Find all users
 
-db.calendar.find({})
+db.events.find({})
 
 # Inserting mongodb data
 
-db.calendar.drop()
+db.events.drop()
 
-db.calendar.insert({"date":"6-12-2022","title":"Dentist Appointment","description":"Very painful tooth extraction"})
-db.calendar.insert({"date":"7-12-2022","title":"Doctors Appointment","description":"Routine checkup"})
+# Note must use 'events', plural and the model in mongoose is 'event' singular !!!
+
+db.events.insert({"date":"6-12-2022","title":"Dentist Appointment","description":"Very painful tooth extraction"})
+db.events.insert({"date":"7-12-2022","title":"Doctors Appointment","description":"Routine checkup"})

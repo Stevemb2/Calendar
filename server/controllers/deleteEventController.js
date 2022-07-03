@@ -1,5 +1,5 @@
-export const deleteEventController = (eventRouter, calendarModel) => {
-  eventRouter.get("/event", async (req, res) => {
+export const deleteEventController = (calendarModel) => {
+  return async (req, res) => {
     const date = req.body.date;
     const title = req.body.title;
 
@@ -19,5 +19,5 @@ export const deleteEventController = (eventRouter, calendarModel) => {
     } catch (err) {
       res.status(500).json({ err });
     }
-  });
+  };
 };

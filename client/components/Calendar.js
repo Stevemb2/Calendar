@@ -28,7 +28,7 @@ export const Calendar = () => {
 
       console.log(`Calendar: event items: ${JSON.stringify(data, null, 3)}`);
 
-      if (data && data.length > 0) dispatch(setDateAction(data));
+      //if (data && data.length > 0) dispatch(setDateAction(data));
     };
 
     getCalendarEvents();
