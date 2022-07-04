@@ -4,6 +4,8 @@ export const updateEventController = (calendarModel) => {
     const title = req.body.title;
     const description = req.body.description;
 
+    console.log(`Updating event: ${date}, ${title} in database`);
+
     try {
       const {
         acknowledged,

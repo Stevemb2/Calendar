@@ -2,6 +2,8 @@ export const getAllEventsController = (eventModel) => {
   return async (req, res) => {
     res.type("application/json");
 
+    console.log(`Getting all events from database`);
+
     try {
       const events = await eventModel.find({}).exec();
 

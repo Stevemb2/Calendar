@@ -3,6 +3,8 @@ export const deleteEventController = (calendarModel) => {
     const date = req.body.date;
     const title = req.body.title;
 
+    console.log(`Deleting event: ${date}, ${title} from database`);
+
     try {
       const {
         deletedCount,
