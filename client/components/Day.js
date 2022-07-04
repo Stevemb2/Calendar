@@ -2,12 +2,12 @@ import React from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { getDayOfWeekText } from "../utilities/getDayOfWeekText";
-import { EventForm } from "../Forms/EventForm";
+import { NewEventForm } from "../Forms/NewEventForm";
 import { EventElement } from "./EventElement";
 import "../styles/calendar.css";
 
 export const Day = ({ date }) => {
-  const eventItems = useSelector((state) => state.events);
+  const events = useSelector((state) => state.events);
 
   const [isDisplayed, setIsDisplayed] = useState(false);
 
@@ -42,7 +42,7 @@ export const Day = ({ date }) => {
 
   let position = -30;
 
-  const eventItemDate = `${date.day}-${date.month}-${date.year}`;
+  const eventDate = `${date.day}-${date.month}-${date.year}`;
 
   return (
     <div
@@ -54,17 +54,17 @@ export const Day = ({ date }) => {
       <div>
         <span className={dayStyle}>{date.day}</span>
       </div>
-      {eventItems.map((eventItem) => {
-        return eventItem.date === eventItemDate ? (
+      {events.map((event) => {
+        return event.date === eventDate ? (
           <EventElement
-            key={`${eventItemDate}-${eventItem.title}`}
-            eventItem={eventItem}
+            key={`${eventDate}-${event.title}`}
+            event={event}
             position={(position += 30)}
           />
         ) : null;
       })}
-      <EventForm
-        date={eventItemDate}
+      <NewEventForm
+        date={eventDate}
         isDisplayed={isDisplayed}
         setIsDisplayed={setIsDisplayed}
       />

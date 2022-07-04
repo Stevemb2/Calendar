@@ -1,75 +1,86 @@
 import React from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useAxios } from "../hooks/useAxios";
 import { formatDate } from "../utilities/formatDate";
-import { createEventAction } from "../actions/createEventAction";
 
-export const EventForm = ({ date, isDisplayed, setIsDisplayed }) => {
+export const EventForm = ({ event, isDisplayed, setIsDisplayed }) => {
   const dispatch = useDispatch();
 
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState(event.description);
+  const [updatedEvent, setUpdatedEvent] = useState({
+    date: "",
+    title: "",
+    description: "",
+  });
+  const [method, setMethod] = useState("");
 
-  // useAxios(initialEventItem, updatedEventItem, method);
-
-  const handleTitle = (event) => {
-    setTitle(event.target.value);
-  };
-
-  const clearTitle = () => {
-    setTitle("");
-  };
+  // STEVE this is not working when we call setEvents!
+  useAxios(event, method);
 
   const handleDescription = (event) => {
     setDescription(event.target.value);
   };
 
-  const clearDescription = () => {
-    setDescription("");
+  const handleUpdate = () => {
+    dispatch({
+      type: "UPDATE_EVENT",
+      payload: {
+        date: event.date,
+        title: event.title,
+        description,
+      },
+    });
+
+    setUpdatedEvent({
+      date: event.date,
+      title: event.title,
+      description,
+    });
+
+    setMethod("PUT");
   };
 
-  const handleCreate = () => {
-    dispatch(
-      createEventAction({
-        date,
-        title,
-        description,
-      })
-    );
+  const handleDelete = () => {
+    dispatch({
+      type: "DELETE_EVENT",
+      payload: {
+        date: event.date,
+        title: event.title,
+        description: "",
+      },
+    });
 
-    setIsDisplayed(false);
+    setUpdatedEvent({
+      date: event.date,
+      title: event.title,
+      description,
+    });
+
+    setMethod("DELETE");
   };
 
   const handleClose = () => {
-    setTitle("");
     setDescription("");
     setIsDisplayed(false);
   };
+
+  const formattedDate = formatDate(event.date);
 
   const eventFormStyle = isDisplayed
     ? "event-form diplayed"
     : "event-form hidden";
 
-  const formattedDate = formatDate(date);
-
   return (
     <div className={eventFormStyle}>
       <div className="input">
-        <h6>New Event</h6>
+        <h4>Event</h4>
       </div>
       <div className="input">
         <span>{formattedDate}</span>
       </div>
       <div className="input">
-        <input
-          placeholder="title"
-          type="text"
-          value={title}
-          onChange={handleTitle}
-          onBlur={handleTitle}
-          onClick={clearTitle}
-        />
+        <span>{event.title}</span>
       </div>
       <div className="input">
         <input
@@ -78,13 +89,17 @@ export const EventForm = ({ date, isDisplayed, setIsDisplayed }) => {
           value={description}
           onChange={handleDescription}
           onBlur={handleDescription}
-          onClick={clearDescription}
         />
       </div>
       <div className="input">
         <span>
-          <button className="button" onClick={handleCreate}>
-            Add
+          <button className="button" type="submit" onClick={handleUpdate}>
+            Update
+          </button>
+        </span>
+        <span>
+          <button className="button" onClick={handleDelete}>
+            Delete
           </button>
         </span>
         <span>

@@ -23,5 +23,5 @@ db.events.drop()
 
 # Note must use 'events', plural and the model in mongoose is 'event' singular !!!
 
-db.events.insert({"date":"6-12-2022","title":"Dentist Appointment","description":"Very painful tooth extraction"})
-db.events.insert({"date":"7-12-2022","title":"Doctors Appointment","description":"Routine checkup"})
+db.events.insert({"date":"12-6-2022","title":"Dentist Appointment","description":"Very painful tooth extraction"})
+db.events.insert({"date":"13-7-2022","title":"Doctors Appointment","description":"Routine checkup"})

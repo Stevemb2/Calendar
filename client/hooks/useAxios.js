@@ -1,40 +1,41 @@
 import { useEffect } from "react";
 import axios from "axios";
 
-export const useAxios = (event, updatedEvent, method) => {
-  // const log = (method, data) => {
-  //   console.log(`useAxios: ${method}, event: ${JSON.stringify(data, null, 3)}`);
-  // };
+export const useAxios = (event, method) => {
+  const { date, title, description } = event;
 
-  useEffect(
+  useEffect(() => {
     (async () => {
-      if (event && updatedEvent) {
-        if (method === "POST" || method === "PUT" || method === "DELETE") {
-          log(method, event);
-          log(method, updatedEvent);
+      if (!date || !title) return;
 
-          if (
-            event.title !== updatedEvent.title ||
-            event.description !== updatedEvent.description
-          ) {
-            const options = {
-              method,
-              headers: {
-                "Content-Type": "application/json",
-              },
-              url: "event",
-              data: updatedEvent,
-            };
+      console.log(
+        `useAxios: date: ${date}, title: ${title}, description: ${description}, method: ${method}`
+      );
 
-            const response = await axios(options);
+      const options = {
+        method,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        url: "event",
+        data: { date, title, description },
+      };
 
-            //const { value, err } = response.data;
+      try {
+        const response = await axios(options);
 
-            log(method, response);
-          }
-        }
+        const { value, err } = response.data;
+
+        console.log(
+          `axios returned value: ${JSON.stringify(
+            value,
+            null,
+            3
+          )}, err: ${JSON.stringify(err, null, 3)}`
+        );
+      } catch (err) {
+        console.error(err);
       }
-    })(),
-    [updatedEvent.title, updatedEvent.description]
-  );
+    })();
+  }, [title, description]);
 };

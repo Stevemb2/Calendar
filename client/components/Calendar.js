@@ -9,14 +9,17 @@ import { Month } from "./Month";
 import { getTodaysDate } from "../utilities/getTodaysDate";
 
 export const Calendar = () => {
+  //const events = useSelector((state) => state.events);
   const dispatch = useDispatch();
 
+  const todaysDate = getTodaysDate();
+
+  //console.log(`todays date: ${JSON.stringify(todaysDate, null, 3)}`);
+
+  dispatch(setDateAction(todaysDate)); // fix!!!
+
   useEffect(() => {
-    const getCalendarEvents = async () => {
-      const todaysDate = getTodaysDate();
-
-      dispatch(setDateAction(todaysDate));
-
+    (async () => {
       const options = {
         method: "get",
         headers: {
@@ -31,12 +34,10 @@ export const Calendar = () => {
 
       const events = data.value;
 
-      //console.log(`Calendar: events: ${JSON.stringify(events, null, 3)}`);
+      console.log(`Calendar: events: ${JSON.stringify(events, null, 3)}`);
 
       if (events && events.length > 0) dispatch(createEventsAction(events));
-    };
-
-    getCalendarEvents();
+    })();
   }, []);
 
   return (

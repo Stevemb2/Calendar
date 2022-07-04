@@ -32,7 +32,7 @@ a {
   padding-bottom: 50%;
 }
 
-.event-form {
+.new-event-form {
   position: fixed;
   z-index: 999;
   background-color: white;
@@ -43,7 +43,7 @@ a {
   margin-right: 4px;
 }
 
-.event-item-form {
+.event-form {
   position: fixed;
   z-index: 9999;
   background-color: white;

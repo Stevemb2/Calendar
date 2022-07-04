@@ -1,15 +1,16 @@
 import React from "react";
 import { useState } from "react";
-import { EventItemForm } from "../Forms/EventItemForm";
+import { EventForm } from "../Forms/EventForm";
 import "../styles/calendar.css";
 
-export const EventElement = ({ eventItem, position }) => {
+export const EventElement = ({ event, position }) => {
   const [isDisplayed, setIsDisplayed] = useState(false);
 
-  const eventElementClickHandler = (event) => {
-    event.stopPropagation();
+  const eventElementClickHandler = (e) => {
+    e.stopPropagation();
 
-    if (event.detail === 2) {
+    if (e.detail === 2) {
+      console.log(`STEVE WE ARE HERE`);
       // Handle double clicks
       setIsDisplayed(!isDisplayed);
     }
@@ -22,11 +23,11 @@ export const EventElement = ({ eventItem, position }) => {
         style={{ marginTop: position }}
         onClick={eventElementClickHandler}
       >
-        {eventItem.title}
+        {event.title}
       </div>
       {isDisplayed ? (
-        <EventItemForm
-          eventItem={eventItem}
+        <EventForm
+          event={event}
           isDisplayed={isDisplayed}
           setIsDisplayed={setIsDisplayed}
         />

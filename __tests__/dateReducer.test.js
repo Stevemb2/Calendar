@@ -1,5 +1,5 @@
 import { expect, test } from "@jest/globals";
-import { dateReducer } from "../client/reducers/dateReducer";
+import { dates } from "../client/reducers/date";
 import { setDateAction } from "../client/actions/setDateAction";
 
 test("Set date", () => {
@@ -11,7 +11,7 @@ test("Set date", () => {
     description: "testing",
   });
 
-  let newState = dateReducer(state, action);
+  let newState = dates(state, action);
 
   expect(newState).toEqual({
     date: "1-20-2022",

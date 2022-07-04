@@ -1,5 +1,5 @@
 import { expect, test } from "@jest/globals";
-import { eventReducer } from "../client/reducers/eventReducer";
+import { events } from "../client/reducers/events";
 import { deleteEventAction } from "../client/actions/deleteEventAction";
 import { getEventsAction } from "../client/actions/getEventsAction";
 import { postEventAction } from "../client/actions/postEventAction";
@@ -22,7 +22,7 @@ test("Get all events", () => {
 
   let action = getEventsAction();
 
-  let newState = eventReducer(state, action);
+  let newState = events(state, action);
 
   expect(newState).toEqual(state);
 });
@@ -47,7 +47,7 @@ test("Post event", () => {
     description: "blah!",
   });
 
-  let newState = eventReducer(state, action);
+  let newState = events(state, action);
 
   expect(newState).toEqual([
     {
@@ -88,7 +88,7 @@ test("Put event", () => {
     description: "blah",
   });
 
-  const newState = eventReducer(state, action);
+  const newState = events(state, action);
 
   expect(newState).toEqual([
     {
@@ -123,7 +123,7 @@ test("Delete event", () => {
     title: "birthday",
   });
 
-  const newState = eventReducer(state, action);
+  const newState = events(state, action);
 
   expect(newState).toEqual([
     {
@@ -150,7 +150,7 @@ test("Post events", () => {
     },
   ]);
 
-  const newState = eventReducer(state, action);
+  const newState = events(state, action);
 
   expect(newState).toEqual([
     {

@@ -10,8 +10,6 @@ export const Header = () => {
 
   let date = useSelector((state) => state.date);
 
-  //console.log(`steve: date: ${JSON.stringify(date, null, 3)}`);
-
   const setTodayHandler = () => {
     const todaysDate = getTodaysDate();
     dispatch(setDateAction(todaysDate));
