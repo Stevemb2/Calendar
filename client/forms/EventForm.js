@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useAxios } from "../hooks/useAxios";
 import { formatDate } from "../utilities/formatDate";
 
@@ -8,15 +8,17 @@ export const EventForm = ({ event, isDisplayed, setIsDisplayed }) => {
   const dispatch = useDispatch();
 
   const [description, setDescription] = useState(event.description);
+
   const [updatedEvent, setUpdatedEvent] = useState({
     date: "",
     title: "",
     description: "",
   });
+
   const [method, setMethod] = useState("");
 
   // STEVE this is not working when we call setEvents!
-  useAxios(event, method);
+  useAxios(updatedEvent, method);
 
   const handleDescription = (event) => {
     setDescription(event.target.value);
@@ -74,7 +76,7 @@ export const EventForm = ({ event, isDisplayed, setIsDisplayed }) => {
   return (
     <div className={eventFormStyle}>
       <div className="input">
-        <h4>Event</h4>
+        <span>Event</span>
       </div>
       <div className="input">
         <span>{formattedDate}</span>
