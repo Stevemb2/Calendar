@@ -4,21 +4,18 @@ import { StrictMode } from "react";
 
 import { Provider } from "react-redux";
 import { store } from "../store";
-import { Calendar } from "./Calendar";
+import { Home } from "./Home";
 import { ErrorPage } from "./ErrorPage";
-import ErrorBoundary from "./ErrorBoundary";
 
 export const Main = () => {
   return (
     <StrictMode>
       <Provider store={store}>
         <BrowserRouter>
-          <ErrorBoundary>
-            <Routes>
-              <Route path="/" element={<Calendar />} />
-              <Route path="/error" element={<ErrorPage />} />
-            </Routes>
-          </ErrorBoundary>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/error" element={<ErrorPage />} />
+          </Routes>
         </BrowserRouter>
       </Provider>
     </StrictMode>

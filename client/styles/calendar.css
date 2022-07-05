@@ -126,3 +126,14 @@ a {
 .form-title {
   font-size: 14px;
 }
+
+.link {
+  text-decoration: underline;
+  color: blue;
+}
+
+.error {
+  color: red;
+  font-size: 40px;
+  margin: 40px;
+}

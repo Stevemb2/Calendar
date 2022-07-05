@@ -1,11 +1,6 @@
 import React from "react";
+import "../styles/calendar.css";
 
 export const ErrorPage = () => {
-  return (
-    <div>
-      <br />
-      <br />
-      <h1>Error!</h1>
-    </div>
-  );
+  return <div className="error">Error!</div>;
 };

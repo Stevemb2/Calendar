@@ -24,12 +24,13 @@ class ErrorBoundary extends Component {
       return <Navigate to="/error" />;
     } else if (this.state.hasError) {
       return (
-        <div>
-          <div>There was an error.</div>
-          <div>
-            <Link to="/error">Click here</Link> to go back to the homepage. Or
-            wait five seconds and we will do it for you.
-          </div>
+        <div className="error">
+          There was an error.{" "}
+          <Link className="link" to="/error">
+            Click here
+          </Link>{" "}
+          to go back to the homepage. Or wait five seconds and we will do it for
+          you.
         </div>
       );
     }
