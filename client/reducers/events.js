@@ -53,7 +53,7 @@ export const events = (state = [], action) => {
 
       console.log(`updatedEvents: ${JSON.stringify(updatedEvents, null, 3)}`);
 
-      return [...events, updatedEvent];
+      return updatedEvents;
     case "DELETE_EVENT":
       const deletedEvent = action.payload;
 

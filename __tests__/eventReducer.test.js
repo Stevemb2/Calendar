@@ -72,35 +72,35 @@ test("Create event", () => {
 test("Update event", () => {
   const state = [
     {
-      date: "1-20-2022",
-      title: "test",
-      description: "testing",
+      date: "12-6-2022",
+      title: "Dentist Appointment",
+      description: "Very painful tooth extraction",
     },
     {
-      date: "2-20-1962",
-      title: "birthday",
-      description: "celebrate",
+      date: "13-7-2022",
+      title: "Doctors Appointment",
+      description: "Routine checkup",
     },
   ];
 
   const action = updateEventAction({
-    date: "2-20-1962",
-    title: "birthday",
-    description: "blah",
+    date: "12-6-2022",
+    title: "Dentist Appointment",
+    description: "?Very painful tooth extraction",
   });
 
   const newState = events(state, action);
 
   expect(newState).toEqual([
     {
-      date: "1-20-2022",
-      title: "test",
-      description: "testing",
+      date: "13-7-2022",
+      title: "Doctors Appointment",
+      description: "Routine checkup",
     },
     {
-      date: "2-20-1962",
-      title: "birthday",
-      description: "blah",
+      date: "12-6-2022",
+      title: "Dentist Appointment",
+      description: "?Very painful tooth extraction",
     },
   ]);
 });
