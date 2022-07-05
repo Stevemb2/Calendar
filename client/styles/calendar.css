@@ -41,6 +41,7 @@ a {
   margin-bottom: 4px;
   margin-left: 20px;
   margin-right: 4px;
+  text-align: left;
 }
 
 .event-form {
@@ -52,6 +53,7 @@ a {
   margin-bottom: 4px;
   margin-left: 20px;
   margin-right: 4px;
+  text-align: left;
 }
 
 .event-element {
@@ -119,4 +121,8 @@ a {
 
 .hidden {
   display: none;
+}
+
+.form-title {
+  font-size: 14px;
 }

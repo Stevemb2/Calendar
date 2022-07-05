@@ -57,7 +57,7 @@ export const NewEventForm = ({ date, isDisplayed, setIsDisplayed }) => {
   return (
     <div className={newEventFormStyle}>
       <div className="input">
-        <h6>New Event</h6>
+        <span className="form-title">New Event</span>
       </div>
       <div className="input">
         <span>{formattedDate}</span>
@@ -73,7 +73,8 @@ export const NewEventForm = ({ date, isDisplayed, setIsDisplayed }) => {
         />
       </div>
       <div className="input">
-        <input
+        <textarea
+          rows="3"
           placeholder="description"
           type="text"
           value={description}

@@ -58,7 +58,7 @@ export const EventForm = ({ event, isDisplayed, setIsDisplayed }) => {
   return (
     <div className={eventFormStyle}>
       <div className="input">
-        <span>Event</span>
+        <span className="form-title">Event</span>
       </div>
       <div className="input">
         <span>{formattedDate}</span>
@@ -67,7 +67,8 @@ export const EventForm = ({ event, isDisplayed, setIsDisplayed }) => {
         <span>{event.title}</span>
       </div>
       <div className="input">
-        <input
+        <textarea
+          rows="3"
           placeholder="description"
           type="text"
           value={description}
