@@ -2,17 +2,18 @@ export const updateEventController = (calendarModel) => {
   return async (req, res) => {
     const date = req.body.date;
     const title = req.body.title;
+    const description = req.body.description;
 
-    console.log(`Updating event: ${date}, ${title} in database`);
+    const event = { date, title, description };
+
+    console.log(
+      `Updating event: date: ${date}, title: ${title}, description: ${description} in database`
+    );
 
     try {
-      const {
-        acknowledged,
-      } = async (event) => {
-        return await calendarModel
-          .where({ date: event.date, title: event.title })
-          .updateOne(event);
-      };
+      const { acknowledged } = await calendarModel
+        .where({ date, title })
+        .updateOne(event);
 
       res.status(200).json({
         value: acknowledged,

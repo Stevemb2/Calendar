@@ -6,7 +6,7 @@ export const createEventController = (calendarModel) => {
 
     const event = { date, title, description };
 
-    console.log(`Creacting event: ${date}, ${title} in database`);
+    console.log(`Creacting event: date: ${date}, title: ${title} in database`);
 
     try {
       const newEvent = calendarModel.create(event);

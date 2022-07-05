@@ -1,65 +1,47 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useAxios } from "../hooks/useAxios";
+import { updateEventThunk } from "../actions/updateEventThunk";
+import { deleteEventThunk } from "../actions/deleteEventThunk";
 import { formatDate } from "../utilities/formatDate";
 
 export const EventForm = ({ event, isDisplayed, setIsDisplayed }) => {
   const dispatch = useDispatch();
 
+  const { date, title } = event;
+
   const [description, setDescription] = useState(event.description);
-
-  const [updatedEvent, setUpdatedEvent] = useState({
-    date: "",
-    title: "",
-    description: "",
-  });
-
-  const [method, setMethod] = useState("");
-
-  // STEVE this is not working when we call setEvents!
-  useAxios(updatedEvent, method);
 
   const handleDescription = (event) => {
     setDescription(event.target.value);
   };
 
   const handleUpdate = () => {
-    dispatch({
-      type: "UPDATE_EVENT",
-      payload: {
-        date: event.date,
-        title: event.title,
+    if (title === "") return;
+
+    dispatch(
+      updateEventThunk({
+        date,
+        title,
         description,
-      },
-    });
+      })
+    );
 
-    setUpdatedEvent({
-      date: event.date,
-      title: event.title,
-      description,
-    });
-
-    setMethod("PUT");
+    setIsDisplayed(false);
   };
 
   const handleDelete = () => {
-    dispatch({
-      type: "DELETE_EVENT",
-      payload: {
-        date: event.date,
-        title: event.title,
-        description: "",
-      },
-    });
+    if (title === "") return;
 
-    setUpdatedEvent({
-      date: event.date,
-      title: event.title,
-      description,
-    });
+    dispatch(
+      deleteEventThunk({
+        date,
+        title,
+        description,
+      })
+    );
 
-    setMethod("DELETE");
+    setIsDisplayed(false);
   };
 
   const handleClose = () => {

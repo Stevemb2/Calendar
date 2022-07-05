@@ -10,7 +10,6 @@ export const EventElement = ({ event, position }) => {
     e.stopPropagation();
 
     if (e.detail === 2) {
-      console.log(`STEVE WE ARE HERE`);
       // Handle double clicks
       setIsDisplayed(!isDisplayed);
     }

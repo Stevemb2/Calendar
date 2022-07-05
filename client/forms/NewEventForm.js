@@ -2,17 +2,13 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { formatDate } from "../utilities/formatDate";
-import { createEventAction } from "../actions/createEventAction";
-import { useAxios } from "../hooks/useAxios";
+import { createEventThunk } from "../actions/createEventThunk";
 
 export const NewEventForm = ({ date, isDisplayed, setIsDisplayed }) => {
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [event, setEvent] = useState({ date, title: "", description: "" });
-
-  useAxios(event, "POST");
 
   const handleTitle = (event) => {
     setTitle(event.target.value);
@@ -31,15 +27,18 @@ export const NewEventForm = ({ date, isDisplayed, setIsDisplayed }) => {
   };
 
   const handleCreate = () => {
+    if (title === "") return;
+
     dispatch(
-      createEventAction({
+      createEventThunk({
         date,
         title,
         description,
       })
     );
 
-    setEvent({ date, title, description });
+    setTitle("");
+    setDescription("");
     setIsDisplayed(false);
   };
 

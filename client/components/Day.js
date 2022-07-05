@@ -11,7 +11,7 @@ export const Day = ({ date }) => {
 
   const [isDisplayed, setIsDisplayed] = useState(false);
 
-  const { dayOfWeek, isFirstWeek } = date;
+  const { day, month, year, dayOfWeek, isFirstWeek } = date;
 
   const displayFormHandler = (event) => {
     event.stopPropagation();
@@ -33,16 +33,16 @@ export const Day = ({ date }) => {
   let dayStyle = date.isCurrentMonth ? "day" : "other-day";
 
   if (
-    todaysDate.day === date.day &&
-    todaysDate.month === date.month &&
-    todaysDate.year === date.year
+    todaysDate.day === day &&
+    todaysDate.month === month &&
+    todaysDate.year === year
   ) {
     dayStyle = "today";
   }
 
   let position = -30;
 
-  const eventDate = `${date.day}-${date.month}-${date.year}`;
+  const eventDate = `${day}-${month}-${year}`;
 
   return (
     <div
@@ -52,7 +52,7 @@ export const Day = ({ date }) => {
     >
       {isFirstWeek ? <div>{getDayOfWeekText(dayOfWeek)}</div> : null}
       <div>
-        <span className={dayStyle}>{date.day}</span>
+        <span className={dayStyle}>{day}</span>
       </div>
       {events.map((event) => {
         return event.date === eventDate ? (

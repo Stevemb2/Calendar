@@ -1,10 +1,10 @@
 import { expect, test } from "@jest/globals";
 import { events } from "../client/reducers/events";
-import { deleteEventAction } from "../client/actions/deleteEventAction";
 import { getEventsAction } from "../client/actions/getEventsAction";
-import { postEventAction } from "../client/actions/postEventAction";
-import { postEventsAction } from "../client/actions/postEventsAction";
-import { putEventAction } from "../client/actions/putEventAction";
+import { createEventsAction } from "../client/actions/createEventsAction";
+import { createEventAction } from "../client/actions/createEventAction";
+import { updateEventAction } from "../client/actions/updateEventAction";
+import { deleteEventAction } from "../client/actions/deleteEventAction";
 
 test("Get all events", () => {
   let state = [
@@ -27,7 +27,7 @@ test("Get all events", () => {
   expect(newState).toEqual(state);
 });
 
-test("Post event", () => {
+test("Create event", () => {
   const state = [
     {
       date: "1-20-2022",
@@ -41,7 +41,7 @@ test("Post event", () => {
     },
   ];
 
-  const action = postEventAction({
+  const action = createEventAction({
     date: "3-4-2022",
     title: "Another Date",
     description: "blah!",
@@ -68,7 +68,8 @@ test("Post event", () => {
   ]);
 });
 
-test("Put event", () => {
+// sburns fix!
+test("Update event", () => {
   const state = [
     {
       date: "1-20-2022",
@@ -82,7 +83,7 @@ test("Put event", () => {
     },
   ];
 
-  const action = putEventAction({
+  const action = updateEventAction({
     date: "2-20-1962",
     title: "birthday",
     description: "blah",
@@ -134,10 +135,10 @@ test("Delete event", () => {
   ]);
 });
 
-test("Post events", () => {
+test("Create events", () => {
   const state = [];
 
-  const action = postEventsAction([
+  const action = createEventsAction([
     {
       date: "1-20-2022",
       title: "test",
