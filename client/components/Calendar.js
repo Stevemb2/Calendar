@@ -6,14 +6,14 @@ import { setDateAction } from "../actions/setDateAction";
 import { createEventsAction } from "../actions/createEventsAction";
 import { Header } from "./Header";
 import { Month } from "./Month";
-import { getTodaysDate } from "../utilities/getTodaysDate";
+import { getFirstDayOfCurrentMonth } from "../utilities/getFirstDayOfCurrentMonth";
 
 export const Calendar = () => {
   const dispatch = useDispatch();
 
-  const todaysDate = getTodaysDate();
+  const firstDayOfCurrentMonth = getFirstDayOfCurrentMonth();
 
-  dispatch(setDateAction(todaysDate)); // fix!!!
+  dispatch(setDateAction(firstDayOfCurrentMonth));
 
   useEffect(() => {
     (async () => {

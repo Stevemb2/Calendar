@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setDateAction } from "../actions/setDateAction.js";
 import { getMonthText } from "../utilities/getMonthText.js";
-import { getTodaysDate } from "../utilities/getTodaysDate.js";
+import { getFirstDayOfCurrentMonth } from "../utilities/getFirstDayOfCurrentMonth";
 import "../styles/calendar.css";
 
 export const Header = () => {
@@ -10,9 +10,10 @@ export const Header = () => {
 
   let date = useSelector((state) => state.date);
 
-  const setTodayHandler = () => {
-    const todaysDate = getTodaysDate();
-    dispatch(setDateAction(todaysDate));
+  const currentMonthHandler = () => {
+    const firstDayOfCurrentMonth = getFirstDayOfCurrentMonth();
+
+    dispatch(setDateAction(firstDayOfCurrentMonth));
   };
 
   const previousMonthHandler = () => {
@@ -51,7 +52,7 @@ export const Header = () => {
 
   return (
     <div className="header">
-      <button className="button" onClick={setTodayHandler}>
+      <button className="button" onClick={currentMonthHandler}>
         Today
       </button>
       <button className="arrow" onClick={previousMonthHandler}>
