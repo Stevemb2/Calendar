@@ -6,10 +6,10 @@ export const createEventController = (calendarModel) => {
 
     const event = { date, title, description };
 
-    console.log(`Creacting event: date: ${date}, title: ${title} in database`);
+    console.log(`Creating event: date: ${date}, title: ${title} in database`);
 
     try {
-      const newEvent = calendarModel.create(event);
+      const newEvent = await calendarModel.create(event);
 
       res.status(200).json({
         value: newEvent,

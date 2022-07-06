@@ -66,7 +66,7 @@ export const EventForm = ({ event, isDisplayed, setIsDisplayed }) => {
       <div className="input">
         <span>{event.title}</span>
       </div>
-      <div className="input">
+      <div className="input" data-testid="description">
         <textarea
           rows="3"
           placeholder="description"
